@@ -1,25 +1,25 @@
 import './country-card.css';
 
-function CountryCard() {
+function CountryCard({ country }) {
   return (
     <article className="card">
       <div className="card__image">
-        <img src="https://restcountries.eu/data/usa.svg" alt="" />
+        <img src={country.flag} alt={`${country.name} flag`} />
       </div>
       <div className="card-description">
-        <p className="country-name">United States of Americaaaaaaaaaaa</p>
+        <p className="country-name">{country.name}</p>
         <div className="card-description__details">
           <p>
-            <span className="bold">Population</span>
-            <span>323,947,000</span>
+            <span className="bold">Population: </span>
+            <span>{country.population.toLocaleString('en-Us')}</span>
           </p>
           <p>
-            <span className="bold">Region</span>
-            <span>Americas</span>
+            <span className="bold">Region: </span>
+            <span>{country.region}</span>
           </p>
           <p>
-            <span className="bold">Capital</span>
-            <span>Washintong, D.C.</span>
+            <span className="bold">Capital: </span>
+            <span>{country.capital}</span>
           </p>
         </div>
       </div>

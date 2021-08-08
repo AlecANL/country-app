@@ -1,26 +1,31 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  filterByName,
+  filterByRegion,
+} from '../../redux/countries/countries.actions';
 import './search.css';
 
 const countriesToOptions = [
   {
     id: 1,
-    name: 'africa',
+    name: 'Africa',
   },
   {
     id: 2,
-    name: 'america',
+    name: 'Americas',
   },
   {
     id: 3,
-    name: 'asia',
+    name: 'Asia',
   },
   {
     id: 4,
-    name: 'europe',
+    name: 'Europe',
   },
   {
     id: 5,
-    name: 'oceania',
+    name: 'Oceania',
   },
 ];
 
@@ -34,15 +39,24 @@ function Search() {
 }
 
 function SearchField() {
+  const dispatch = useDispatch();
   const [countryName, setCountryName] = React.useState('');
   const searchFieldRef = React.useRef(null);
 
   function handleSearchFieldChange() {
     setCountryName(searchFieldRef.current.value);
+    dispatch(filterByName(countryName));
+    console.log(countryName);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(filterByName(countryName));
+
+    console.log(countryName);
   }
 
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={handleSubmit}>
       <img
         src={`${process.env.PUBLIC_URL}/icon-search.svg`}
         alt="icon search"
@@ -60,6 +74,7 @@ function SearchField() {
 }
 
 function SearchOption({ listOptions }) {
+  const dispatch = useDispatch();
   const [isShowOptions, setShowOptions] = React.useState(false);
 
   const classNameOption = isShowOptions
@@ -70,6 +85,10 @@ function SearchOption({ listOptions }) {
     setShowOptions(!isShowOptions);
   }
 
+  function handleFilterByRegion(tag) {
+    dispatch(filterByRegion(tag));
+  }
+
   return (
     <div className="select" onClick={handleShowOptions}>
       <div className="select-button">
@@ -77,7 +96,11 @@ function SearchOption({ listOptions }) {
       </div>
       <ul className={classNameOption}>
         {listOptions.map(option => (
-          <li className="select-item" key={option.id}>
+          <li
+            onClick={() => handleFilterByRegion(option.name)}
+            className="select-item"
+            key={option.id}
+          >
             {option.name}
           </li>
         ))}

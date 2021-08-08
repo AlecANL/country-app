@@ -4,11 +4,16 @@
   border-radius: 0.5rem;
   box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+.card:hover {
+  background-color: #ffffff23;
 }
 .card__image {
   overflow: hidden;
   border-start-start-radius: 0.5rem;
   border-start-end-radius: 0.5rem;
+  block-size: 10rem;
 }
 .card__image img {
   inline-size: 100%;
