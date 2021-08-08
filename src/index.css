@@ -11,20 +11,19 @@
   --mobile-small-text: 400 0.875rem / 1.25rem var(--base-font);
   --mobile-headline3: bold 1.125rem / 1.625rem var(--base-font);
   --mobile-small-description: 300 0.875rem / 1rem var(--base-font);
+  --mobile-smaller-description: 300 0.875rem / 2rem var(--base-font);
   --desktop-headline: bold 1.5rem / 2rem var(--base-font);
 }
 
 body {
   margin: 0;
   font-family: var(--base-font);
-  /* color: var(--txt-dark); */
-  /* background-color: var(--bg-ligth); */
-  transition: background-color 0.2s ease-in-out;
   box-sizing: border-box;
 }
 img {
   max-inline-size: 100%;
 }
+
 .dark-mode {
   --bg-ligth: var(--bg-dark);
   --bg-white: var(--bg-soft-dark);
@@ -47,4 +46,7 @@ img {
     --bg-white: var(--bg-soft-dark);
     --txt-dark: var(--text-ligth);
   }
+}
+::-webkit-scrollbar {
+  background-color: var(--bg-soft-dark);
 }

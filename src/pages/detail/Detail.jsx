@@ -1,7 +1,9 @@
+import CountryDetail from '../../components/country-detail/CountryDetail';
+
 function Detail() {
   return (
     <main>
-      <h1>Hello Detail</h1>
+      <CountryDetail />
     </main>
   );
 }
