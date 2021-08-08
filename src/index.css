@@ -47,6 +47,3 @@ img {
     --txt-dark: var(--text-ligth);
   }
 }
-::-webkit-scrollbar {
-  background-color: var(--bg-soft-dark);
-}
