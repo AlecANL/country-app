@@ -1,0 +1,14 @@
+.country-collection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 264px);
+  row-gap: 2.5rem;
+  padding-inline: 1rem;
+  column-gap: 2.5rem;
+  justify-content: center;
+}
+@media screen and (min-width: 480px) {
+  .country-collection {
+    row-gap: 4.6875rem;
+    column-gap: 4rem;
+  }
+}

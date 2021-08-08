@@ -1,0 +1,40 @@
+.card {
+  background-color: var(--just-whie);
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.0294384);
+  cursor: pointer;
+}
+.card__image {
+  overflow: hidden;
+  border-start-start-radius: 0.5rem;
+  border-start-end-radius: 0.5rem;
+}
+.card__image img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+.card-description {
+  padding-block-start: 1.5rem;
+  padding-block-end: 2.875rem;
+  padding-inline: 1.5rem;
+}
+.card-description p {
+  margin: 0;
+}
+.card-description__details {
+  margin-block-start: 1rem;
+  font: var(--mobile-small-description);
+}
+.bold {
+  font-weight: 600;
+}
+.card-description__details p {
+  margin-block-end: 0.5rem;
+}
+.country-name {
+  font: var(--mobile-headline3);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
