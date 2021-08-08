@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import {
   loadAllCountries,
   rejectLoadCountries,
+  activeCountry,
 } from '../redux/countries/countries.actions';
 
 export function useFetch(apiURL) {
@@ -16,7 +17,19 @@ export function useFetch(apiURL) {
       throw new Error('whoops something a wrong');
     }
   }
+
+  async function getCountryByCode(alphaCode) {
+    try {
+      const response = await fetch(`${apiURL}/${alphaCode}`);
+      const country = await response.json();
+      dispatch(activeCountry(country));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   return {
     getCountries,
+    getCountryByCode,
   };
 }

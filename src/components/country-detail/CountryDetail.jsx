@@ -1,12 +1,31 @@
-import { useHistory } from 'react-router';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
+import { useFetch } from '../../hooks/useEfetch';
+import { unsetActiveCountry } from '../../redux/countries/countries.actions';
+import Loader from '../loader/Loader';
 import './country-detail.css';
 
 function CountryDetail() {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
+  const { getCountryByCode } = useFetch('https://restcountries.eu/rest/v2');
+  const countryDetail = useSelector(state => state.countries.activeCountry);
 
   function handleBackHome() {
     history.goBack();
+    dispatch(unsetActiveCountry());
   }
+
+  React.useEffect(() => {
+    getCountryByCode(`alpha/${id.toLowerCase()}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!countryDetail) return <Loader />;
+  console.log(countryDetail);
+
   return (
     <section className="country-description">
       <div className="button" onClick={handleBackHome}>
@@ -17,65 +36,71 @@ function CountryDetail() {
       </div>
       <div className="description-content">
         <div className="flag">
-          <img src="https://restcountries.eu/data/arg.svg" alt="" />
+          <img src={countryDetail.flag} alt={`${countryDetail.name} flag`} />
         </div>
         <div className="description">
-          <h1>Country Name</h1>
+          <h1>{countryDetail.name}</h1>
           <div className="description__details">
             <div className="country-detail">
               <p>
                 <strong>Native Name: </strong>
-                <span>Belgie</span>
+                <span>{countryDetail.nativeName}</span>
               </p>
               <p>
                 <strong>Population: </strong>
-                <span>102002</span>
+                <span>{countryDetail.population.toLocaleString('en-Us')}</span>
               </p>
               <p>
                 <strong>Region: </strong>
-                <span>Europe</span>
+                <span>{countryDetail.region}</span>
               </p>
               <p>
                 <strong>Sub Region: </strong>
-                <span>Wester Wurope</span>
+                <span>{countryDetail.subregion}</span>
               </p>
               <p>
                 <strong>Capital: </strong>
-                <span>Bressles</span>
+                <span>{countryDetail.capital}</span>
               </p>
             </div>
             <div className="country-detail">
               <p>
                 <strong>Top Level Domain: </strong>
-                <span>Belgie</span>
+                <span>{countryDetail.topLevelDomain[0]}</span>
               </p>
               <p>
                 <strong>Currencies: </strong>
-                <span>Belgie</span>
+                <span>{countryDetail.currencies[0]['name']}</span>
               </p>
               <p>
                 <strong>Languages: </strong>
-                <span>Belgie</span>
+                {countryDetail.languages.map((language, idx) => (
+                  <span key={idx}>{language.name} </span>
+                ))}
               </p>
             </div>
-            <div className="tags">
-              <p>Border Countries:</p>
-              <ul className="tags-list">
-                <li className="tags-list__item">
-                  <a href={`/country/Code`}>France</a>
-                </li>
-                <li className="tags-list__item">
-                  <a href={`/country/Code`}>France</a>
-                </li>
-                <li className="tags-list__item">
-                  <a href={`/country/Code`}>France</a>
-                </li>
-              </ul>
-            </div>
+            {countryDetail.borders.length > 0 ? (
+              <BorderCountry listBorders={countryDetail.borders} />
+            ) : null}
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function BorderCountry({ listBorders }) {
+  return (
+    <div className="tags">
+      <p>Border Countries:</p>
+      <ul className="tags-list">
+        {listBorders.map((border, idx) => (
+          <li key={idx} className="tags-list__item">
+            <a href={`/country/${border}`}>{border}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

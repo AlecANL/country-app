@@ -4,6 +4,7 @@ const initialState = {
   collections: [],
   collectionsFilteredByRegion: [],
   collectionsFilteredByName: [],
+  activeCountry: null,
   filterByRegion: null,
   isError: null,
   isLoading: true,
@@ -55,6 +56,17 @@ export function CountriesReducer(state = initialState, action) {
       };
     }
 
+    case CountriesTypes.ACTIVE_COUNTRY:
+      return {
+        ...state,
+        activeCountry: action.payload,
+      };
+
+    case CountriesTypes.UNSET_ACTIVE_COUNTRY:
+      return {
+        ...state,
+        activeCountry: null,
+      };
     default:
       return {
         ...state,

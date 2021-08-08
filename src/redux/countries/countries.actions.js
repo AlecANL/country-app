@@ -27,3 +27,16 @@ export function filterByName(name) {
     payload: name,
   };
 }
+
+export function activeCountry(country) {
+  return {
+    type: CountriesTypes.ACTIVE_COUNTRY,
+    payload: country,
+  };
+}
+
+export function unsetActiveCountry() {
+  return {
+    type: CountriesTypes.UNSET_ACTIVE_COUNTRY,
+  };
+}
