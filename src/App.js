@@ -6,27 +6,24 @@ import './App.css';
 
 function App() {
   const [isDarkMode, setDarkMode] = React.useState(false);
-  const [isChecked, setChecked] = React.useState(false);
 
   function handleDarkMode(mqLis) {
     setDarkMode(mqLis.matches);
-    setChecked(mqLis.matches);
   }
 
   React.useEffect(() => {
     const mqList = window.matchMedia('(prefers-color-scheme: dark)');
     mqList.addEventListener('change', handleDarkMode);
-    setChecked(mqList.matches);
     setDarkMode(mqList.matches);
   }, []);
 
   const classNameDarkMode = isDarkMode
-    ? 'country-app is-dark'
-    : 'country-app ligth';
+    ? 'countries-app dark-mode'
+    : 'countries-app ligth-mode';
 
   return (
     <div className={classNameDarkMode}>
-      <Header isDarkMode={isDarkMode} isChecked={isChecked} />
+      <Header setDarkMode={setDarkMode} isDarkMode={isDarkMode} />
       <Wrapper>
         <RouteApp />
       </Wrapper>

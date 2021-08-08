@@ -13,7 +13,7 @@
   padding-block: 0.875rem;
   border-radius: 0.3125rem;
   gap: 1.5rem;
-  background-color: var(--just-whie);
+  background-color: var(--bg-white);
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
 }
 .search-form .search-field {
@@ -21,6 +21,8 @@
 }
 .search-field {
   border: none;
+  background-color: var(--bg-white);
+  color: var(--txt-dark);
 }
 .search-field::placeholder {
   color: var(--txt-ligth-gray);
@@ -36,7 +38,8 @@
   inline-size: 100%;
   padding-inline: 1.5rem;
   padding-block: 0.875rem;
-  background-color: var(--just-whie);
+  background-color: var(--bg-white);
+  color: var(--txt-dark);
   border-radius: 0.3125rem;
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   cursor: pointer;
@@ -59,7 +62,8 @@
   padding-inline: 1.5rem;
   padding-block: 1rem;
   margin-block-start: 4px;
-  background-color: var(--just-whie);
+  background-color: var(--bg-white);
+  color: var(--txt-dark);
   box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
   list-style-type: none;
   border-radius: 0.3125rem;

@@ -2,11 +2,11 @@
   --base-font: 'Nunito Sans', sans-serif;
   --bg-ligth: #f2f2f2;
   --bg-dark: #202c36;
-  --bg-header-dark: #2b3844;
+  --bg-soft-dark: #2b3844;
   --txt-dark: #111517;
   --txt-ligth-gray: #c4c4c4;
   --text-ligth: #fff;
-  --just-whie: #ffffff;
+  --bg-white: #ffffff;
   --mobile-headline: bold 0.875rem / 1.25rem var(--base-font);
   --mobile-small-text: 400 0.875rem / 1.25rem var(--base-font);
   --mobile-headline3: bold 1.125rem / 1.625rem var(--base-font);
@@ -17,11 +17,34 @@
 body {
   margin: 0;
   font-family: var(--base-font);
-  color: var(--txt-dark);
-  background-color: var(--bg-ligth);
+  /* color: var(--txt-dark); */
+  /* background-color: var(--bg-ligth); */
   transition: background-color 0.2s ease-in-out;
   box-sizing: border-box;
 }
 img {
   max-inline-size: 100%;
+}
+.dark-mode {
+  --bg-ligth: var(--bg-dark);
+  --bg-white: var(--bg-soft-dark);
+  --txt-dark: var(--text-ligth);
+}
+
+.ligth-mode {
+  --bg-ligth: #f2f2f2;
+  --bg-dark: #202c36;
+  --bg-soft-dark: #2b3844;
+  --txt-dark: #111517;
+  --txt-ligth-gray: #c4c4c4;
+  --text-ligth: #fff;
+  --bg-white: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-ligth: var(--bg-dark);
+    --bg-white: var(--bg-soft-dark);
+    --txt-dark: var(--text-ligth);
+  }
 }

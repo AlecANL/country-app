@@ -1,0 +1,4 @@
+.countries-app {
+  background-color: var(--bg-ligth);
+  min-block-size: 100vh;
+}

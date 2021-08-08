@@ -1,8 +1,10 @@
 import Wrapper from '../wrapper/Wrapper';
 import './header.css';
 
-function Header() {
-  // pass to props isDarMode and change btn-dark-mode
+function Header({ setDarkMode, isDarkMode }) {
+  function handleDarkMode() {
+    setDarkMode(!isDarkMode);
+  }
   return (
     <header className="header">
       <Wrapper>
@@ -10,7 +12,9 @@ function Header() {
           <div className="header__headline">
             <h1>Where in the world?</h1>
           </div>
-          <div className="btn-dark-mode">🌑 Dark Mode</div>
+          <div onClick={handleDarkMode} className="btn-dark-mode">
+            {isDarkMode ? '☀️ Ligth Mode' : '🌔 Dark Mode'}
+          </div>
         </div>
       </Wrapper>
     </header>
