@@ -9,7 +9,7 @@ import './home.css';
 // const fakedData = [{ name: '' }, { name: '' }, { name: '' }, { name: '' }];
 
 function Home() {
-  const { getCountries } = useFetch('https://restcountries.eu/rest/v2');
+  const { getCountries } = useFetch('https://restcountries.com/v2');
 
   const { isLoading } = useSelector(state => state.countries);
 
